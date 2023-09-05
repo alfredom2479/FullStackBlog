@@ -42,3 +42,5 @@ const deleteBlogPost = (req,res) => {
     message: "Under Construction"
   });
 }
+
+export {getBlogPost, createBlogPost,updaeteBlogPost,deleteBlogPost};
