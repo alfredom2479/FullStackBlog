@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from "express";
-import errorHandler from "./middleware/errorMiddleware.js";
+import {errorHandler,notFound } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js"
 import configRoutes from "./routes/index.js"
 import cookieParser from 'cookie-parser';
@@ -20,6 +20,7 @@ app.use(cookieParser());
 
 configRoutes(app);
 
+app.use(notFound);
 app.use(errorHandler);
 
 app.listen(port, ()=>console.log(`Server started on port ${port}`))
