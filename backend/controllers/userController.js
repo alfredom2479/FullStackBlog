@@ -100,7 +100,7 @@ const loginUser = asyncHandler(async(req,res) => {
 
     res.json({
       _id: user._id,
-      name: user.username,
+      username: user.username,
       email: user.email
     });
   }
@@ -125,11 +125,19 @@ const logoutUser = asyncHandler(async(req,res) => {
 // @desc      Gets current user information
 // @route     GET /api/users/me
 // @access    Private
-const getMe = (req,res) => {
-  res.status(404);
-  res.json({
-    message: "under construction"
-  })
-}
+const getMe = asyncHandler(async(req,res) => {
+  const user = await User.findById(req.user._id);
+
+  if(user){
+    res.json({
+      _id: user._id,
+      username: user.username,
+      email: user.email
+    });
+  }else{
+    res.status(404);
+    throw new Error("User not found")
+  }
+});
 
 export {createUser, loginUser,logoutUser, getMe};
