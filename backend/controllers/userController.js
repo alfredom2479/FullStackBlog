@@ -75,7 +75,7 @@ const createUser = [
         generateToken(res, user._id);
 
         res.status(201).json({
-          _id: user.id,
+          _id: user._id,
           username: user.username,
           email: user.email
         });

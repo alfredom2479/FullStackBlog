@@ -6,6 +6,10 @@ const postSchema = mongoose.Schema({
     require: [true, "Please add the writer of post"],
     ref: 'User'
   },
+  title: {
+    type: String,
+    require: [true, "please add the post title"]
+  },
   content: {
     type: String,
     require: [true, "Please add the post text"]
@@ -17,4 +21,5 @@ const postSchema = mongoose.Schema({
   timestamps: true
 });
 
-export default mongoose.model("Post", postSchema);
+const BlogPost = mongoose.model("Post",postSchema);
+export default BlogPost;
