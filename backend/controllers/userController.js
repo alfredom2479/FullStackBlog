@@ -113,12 +113,14 @@ const loginUser = asyncHandler(async(req,res) => {
 // @desc      Log out user
 // @route     POST /api/users/logout
 // @access    Private
-const logoutUser = (req,res) => {
-  res.status(404);
-  res.json({
-    message: "under construction"
-  })
-}
+const logoutUser = asyncHandler(async(req,res) => {
+  //set cookie to nothing and make it expire now
+  res.cookie("jwt","",{
+    httpOnly: true,
+    expires: new Date(0)
+  });
+  res.status(200).json({message: "Logged out succesfully"});
+})
 
 // @desc      Gets current user information
 // @route     GET /api/users/me
