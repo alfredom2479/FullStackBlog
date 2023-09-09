@@ -8,15 +8,6 @@ import BlogPost from "../models/postModel.js";
 // @route     POST /api/posts/
 // @access    Private
 const createBlogPost = [
-  body("author")
-    .exists().withMessage("author field is missing")
-    .trim().notEmpty().withMessage("Author is required")
-    .custom((value)=>{
-      if(!isValidObjectId(value)){
-        throw new Error("Not valid author Id")
-      }
-      return true;
-    }),
   body("title")
     .exists().withMessage("Title field is missing")
     .trim().notEmpty().withMessage("Title is required")
@@ -43,10 +34,10 @@ const createBlogPost = [
       throw new Error(outputErrorString);
     }
 
-    const {author, title, content} = req.body;
+    const {title, content} = req.body;
 
     const blogPost = await BlogPost.create({
-      author,
+      author: req.user._id,
       title,
       content,
       isprivate:true
