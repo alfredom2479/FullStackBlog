@@ -109,8 +109,6 @@ const updaeteBlogPost = [
       .escape(),
     body("isprivate").optional().isBoolean().withMessage("isprivate must be a true or false"),
   
-  
-  
   asyncHandler(async(req,res) => {
    
   console.log(req.body);
