@@ -18,7 +18,7 @@ const createBlogPost = [
     .trim().notEmpty().withMessage("Content is required")
     .isLength({min:20,max:3000}).withMessage("Content is too short or too long")
     .escape(),
-  
+  body("isprivate").optional().isBoolean().withMessage("isprivate must be a true or false"),
   asyncHandler(async(req,res) =>{
     const validationErrors = validationResult(req);
 
@@ -34,13 +34,13 @@ const createBlogPost = [
       throw new Error(outputErrorString);
     }
 
-    const {title, content} = req.body;
+    const {title, content, isprivate} = req.body;
 
     const blogPost = await BlogPost.create({
       author: req.user._id,
       title,
       content,
-      isprivate:true
+      isprivate: isprivate || true
     });
 
     if(blogPost){
