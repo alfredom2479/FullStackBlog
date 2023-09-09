@@ -102,9 +102,9 @@ const updaeteBlogPost = [
   
   asyncHandler(async(req,res) => {
    
-  console.log(req.body);
+  //console.log(req.body);
   const validationErrors = validationResult(req);
-  console.log(validationErrors.isEmpty());
+  //console.log(validationErrors.isEmpty());
 
   if(!validationErrors.isEmpty()){
     res.status(400);
@@ -147,11 +147,22 @@ const updaeteBlogPost = [
 // @desc      Delete blog post
 // @route     DELETE /api/posts/:id
 // @access    Private
-const deleteBlogPost = (req,res) => {
-  res.status(404);
-  res.json({
-    message: "Under Construction"
-  });
-}
+const deleteBlogPost = asyncHandler(async (req,res) => {
+  const targetBlogPost = await BlogPost.findById(req.params.id);
+
+  if(targetBlogPost){
+    const deletedBlogPost = await BlogPost.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      id: req.params.id,
+      title: deletedBlogPost.title,
+      author: deletedBlogPost.author,
+      lastModifiedAt: deletedBlogPost.updatedAt
+    })
+  }
+  else{
+    res.status(401);
+    throw new Error("Blog Post not found");
+  }
+})
 
 export {getBlogPost, createBlogPost,updaeteBlogPost,deleteBlogPost};
