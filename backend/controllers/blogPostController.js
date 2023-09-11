@@ -52,6 +52,10 @@ const createBlogPost = [
         isprivate: blogPost.isprivate
       })
     }
+    else{
+        res.status(400);
+        throw new Error("Invalid blog post data")
+      }
 
   })
 ]
@@ -61,7 +65,7 @@ const createBlogPost = [
 // @access      Public
 const getBlogPost = asyncHandler(async (req,res) => {
   const requestedBlogPost = await BlogPost.findById(req.params.id);
-  console.log(requestedBlogPost);
+  //console.log(requestedBlogPost);
 
   if(requestedBlogPost){
     res.status(200).json({
@@ -112,7 +116,7 @@ const updaeteBlogPost = [
     let outputErrorString = "";
 
     for(let i =0; i < errorsArray.length; i++){
-      outputErrorString = outputErrorString.concat(": ", errorsArray[i].msg);
+      outputErrorString = outputErrorString.concat("; ", errorsArray[i].msg);
     }
     throw new Error(outputErrorString);
   }
