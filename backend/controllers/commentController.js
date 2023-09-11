@@ -92,12 +92,19 @@ const createComment = [
 // @desc      delete a comment
 // @route     DELETE /api/comments/:id
 // @access    Private
-const deleteComment = (req,res) => {
-  res.status(404);
-  res.json({
-    comment: "Under Construction"
-  });
-}
+const deleteComment = asyncHandler(async(req,res) => {
+  const targetComment = await Comment.findById(req.params.id);
+
+  if(targetComment && targetComment.author.toString() === req.user._id.toString()){
+    const deletedComment = await Comment.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({deletedComment});
+  }
+  else{
+    res.status(404);
+    throw new Error("Comment not found")
+  }
+});
 
 //MAYBE add an update comment
 
