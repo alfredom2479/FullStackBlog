@@ -11,6 +11,10 @@ export default function BlogPosts(){
         <BlogPostCard/>
         <BlogPostCard/>
         <BlogPostCard/>
+        <BlogPostCard/>
+        <BlogPostCard/>
+        <BlogPostCard/>
+        <BlogPostCard/>
       </div>
     </div>
   )

@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom"
 import "../App.css"
 
 export default function BlogPostCard(){
 
   return(
-    <div className="bp-card">
-      <h2 className="bp-card-title">Blog Post Card Title</h2>
-    </div>
+    <Link className="bp-card" to="/view/1">
+      <h2 className="bp-card-title">Blog Post Card Title that is pretty long</h2>
+    </Link>
   )
 }

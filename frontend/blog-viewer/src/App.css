@@ -5,11 +5,21 @@
 
   box-sizing: border-box;
   font-size: 20x;
+  padding:0;
+  margin:0;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  text-decoration: none;
 }
 
 .home-container{
   background-color: var(--bg-color);
-  height:80vh;
+  height: max(100vh,300px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +27,7 @@
 
 .title-container{
   background-color: var(--main-color);
-  height: 100px;
+  /* height: 100px; */
   width: 150x;
   padding: 1rem;
   display: flex;
@@ -26,6 +36,7 @@
   align-items: center;
   padding-bottom: 2rem;
   border-radius: 8px;
+  text-align: center;
 }
 
 h1.home-title{
@@ -38,22 +49,27 @@ h1.home-title{
   background-color: var(--bg-color);
   border-radius: 8px;
   border-width: 3px;
+  border-style: solid;
   font-weight: 700;
   border-color: black;
   width: 5rem;
-
+  font-style: none;
+  text-decoration: none;
+  padding: 1em;
 }
 
 .list-container{
-  box-sizing: content-box;
+  box-sizing: border-box;
   background-color: var(--main-color);
-  height: 70vh;
-  width: 80vw;
+  height: 80vh;
+  max-height: 80vh;
+  width: 90vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  /* padding: 1rem; */
+  /* justify-content: space-around; */
+  padding: 1rem;
+  overflow-y: scroll;
 }
 
 .bp-card{
@@ -64,61 +80,54 @@ h1.home-title{
   padding: 0 1rem;
   text-align: center;
   width: 80%;
+  margin: 1rem;
 }
 
 h2.bp-card-title{
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 
 .bp-content-container{
-  background-color: beige;
-  color: darkblue;
-  height: 80%;
-  width: 80%;
+  background-color: rgb(251, 251, 251);
+  color: rgb(2, 2, 46);
+  height: 95%;
+  width: 95%;
   text-align: center;
-}
-/*
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  overflow-y: scroll;
+  /* padding: 2rem; */
 }
 
+.viewer-container{
+  display: flex;
+  align-items: center;
+  margin:0;
+  box-sizing: border-box;
+  padding: .5rem;
+  height: 100vh;
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.viewer-browser{
+  flex:1;
+  background-color: black;
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  /* padding: 2rem 2rem; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.bp-browser-container{
+  background-color: blanchedalmond;
+  width: 100%;
+  margin: 1rem;
+
 }
 
-.card {
-  padding: 2em;
+.viewer-bp{
+  flex:3;
 }
-
-.read-the-docs {
-  color: #888;
+p{
+  color: black;
 }
-*/
