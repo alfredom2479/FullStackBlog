@@ -59,9 +59,28 @@ const createBlogPost = [
 
   })
 ]
-
 // @desc        Get blog post information + content
 // @route       GET /api/posts/
+// @access      Public
+const getBlogPosts = asyncHandler(async (req,res)=>{
+  const requestedBlogPosts = await BlogPost.find({})
+    .select(["-_id", "-author","-__v"]);
+
+  if(requestedBlogPosts){
+    const publicBlogPosts = requestedBlogPosts.filter((blogPost)=> !blogPost.isprivate);
+    res.status(200).json({
+      blogposts: publicBlogPosts
+    });
+  }
+  else{
+    res.status(404);
+    throw new Error("Blog posts not found");
+  }
+})
+
+
+// @desc        Get blog post information + content
+// @route       GET /api/posts/:id
 // @access      Public
 const getBlogPost = asyncHandler(async (req,res) => {
   const requestedBlogPost = await BlogPost.findById(req.params.id);
@@ -169,4 +188,4 @@ const deleteBlogPost = asyncHandler(async (req,res) => {
   }
 })
 
-export {getBlogPost, createBlogPost,updaeteBlogPost,deleteBlogPost};
+export {getBlogPosts, getBlogPost, createBlogPost,updaeteBlogPost,deleteBlogPost};

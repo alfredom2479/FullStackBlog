@@ -5,12 +5,15 @@ import {protect, adminProtect} from "../middleware/authMiddleware.js";
 
 import {
   createBlogPost,
+  getBlogPosts,
   getBlogPost,
   updaeteBlogPost,
   deleteBlogPost
 } from "../controllers/blogPostController.js"
 
-router.post("/",protect,adminProtect,createBlogPost);
+router.route("/")
+  .get(getBlogPosts)
+  .post(protect,adminProtect,createBlogPost);
 router.route("/:id")
   .get(getBlogPost)
   .put(protect,adminProtect,updaeteBlogPost)
