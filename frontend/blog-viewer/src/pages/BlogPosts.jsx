@@ -1,12 +1,15 @@
-import '../App.css'
+//import '../App.css'
+import { HomeGlobalStyles } from '../components/styles/Global'
+import { ListContainer } from '../components/styles/ListContainer.styled'
 
 import BlogPostCard from '../components/BlogPostCard'
 
 export default function BlogPosts(){
 
   return(
-    <div className="home-container">
-      <div className='list-container'>
+    <>
+    <HomeGlobalStyles/>
+      <ListContainer>
         <BlogPostCard/>
         <BlogPostCard/>
         <BlogPostCard/>
@@ -14,8 +17,7 @@ export default function BlogPosts(){
         <BlogPostCard/>
         <BlogPostCard/>
         <BlogPostCard/>
-        <BlogPostCard/>
-      </div>
-    </div>
+      </ListContainer>
+    </>
   )
 }

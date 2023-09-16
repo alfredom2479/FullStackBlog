@@ -1,16 +1,19 @@
-import '../App.css';
+//import '../App.css';
+import { HomeGlobalStyles } from '../components/styles/Global';
+import { TitleContainer } from '../components/styles/TitleContainer.styled';
+import { HomeLink } from '../components/styles/HomeButton.styled';
 
-import {Link} from "react-router-dom";
 
 export default function Home(){
 
   return(
-    <div className='home-container'>
-      <div className="title-container">
-        <h1 className='home-title'>Welcome To My Blog</h1>
-        <Link to="/blogposts" className='main-butt'>Blog Posts</Link>
-      </div>
-    </div>
+    <>
+    <HomeGlobalStyles/>
+      <TitleContainer>
+        Welcome To My Blog
+        <HomeLink to="/blogposts" className='main-butt'>Posts</HomeLink>
+      </TitleContainer>
+    </>
   )
 }
 

@@ -1,3 +1,4 @@
+
 import React  from 'react'
 import ReactDOM from 'react-dom/client'
 import {
@@ -10,7 +11,6 @@ import BlogPosts from "./pages/BlogPosts.jsx";
 import Home from "./pages/Home.jsx";
 import BlogPost from './pages/BlogPost.jsx';
 
-import './index.css'
 import BlogPostLayout from './components/BlogPostLayout.jsx';
 
 const router = createBrowserRouter([
@@ -36,6 +36,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </React.StrictMode>,
 )
