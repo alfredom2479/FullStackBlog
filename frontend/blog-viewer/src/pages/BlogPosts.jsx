@@ -4,6 +4,12 @@ import { ListContainer } from '../components/styles/ListContainer.styled'
 
 import BlogPostCard from '../components/BlogPostCard'
 
+import { getBlogPosts } from '../../blogapi'
+
+export function loader(){
+  return getBlogPosts();
+}
+
 export default function BlogPosts(){
 
   return(
