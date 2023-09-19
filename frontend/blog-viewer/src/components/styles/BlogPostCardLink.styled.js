@@ -12,12 +12,14 @@ export const BlogPostCardLink = styled(Link)`
   border-radius: 10px;
   border-color: var(--personality-color);
 
-  height: 4rem;
+  //height: 4rem;
   margin: 1rem;
   padding: 1rem;
 
   color: var(--personality-color);
   font-weight: 900;
+  font-size: 1.5rem;
+  text-align: center;
 
   &:hover{
     background-color: #d9e7ff;

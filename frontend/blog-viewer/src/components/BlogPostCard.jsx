@@ -3,8 +3,6 @@ import { BlogPostCardLink } from "./styles/BlogPostCardLink.styled"
 
 export default function BlogPostCard({blogPostData}){
 
-  console.log("in card");
-  console.log(blogPostData);
   return(
     <BlogPostCardLink to="/view/1">
        {blogPostData.title} 

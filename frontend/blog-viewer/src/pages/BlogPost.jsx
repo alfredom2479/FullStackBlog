@@ -1,10 +1,12 @@
-import "../App.jsx"
+import ContentContainer from "../components/styles/ContentContainer.styled.js"
+import ContentTextContainer from "../components/styles/ContentTextContainer.styled.js"
 
 export default function BlogPost(){
 
   return(
-    <div className="home-container">
-      <div className="bp-content-container">
+    <>
+    <ContentContainer>
+      <ContentTextContainer>
         <h1>Blog Post Title</h1>
         <p>
           This is the bloc post content. Hopefully it will 
@@ -15,8 +17,8 @@ export default function BlogPost(){
           <br/>
           Test
         </p>
-      </div>
-      
-    </div>
+      </ContentTextContainer>
+    </ContentContainer>
+     </> 
   )
 }

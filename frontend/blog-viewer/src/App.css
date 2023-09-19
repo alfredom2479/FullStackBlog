@@ -1,3 +1,4 @@
+/*
 :root{
   --main-color: rgb(232, 232, 239);
   --secondary-color: rgb(86, 83, 240);
@@ -21,13 +22,13 @@ a{
   background-color: var(--bg-color);
   height: max(100vh,300px);
   display: flex;
+  flex: 3;
   justify-content: center;
   align-items: center;
 }
 
 .title-container{
   background-color: var(--main-color);
-  /* height: 100px; */
   width: 150x;
   padding: 1rem;
   display: flex;
@@ -67,7 +68,6 @@ h1.home-title{
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-around; */
   padding: 1rem;
   overflow-y: scroll;
 }
@@ -75,7 +75,6 @@ h1.home-title{
 .bp-card{
   background-color: rgb(24, 19, 85);
   color: beige;
-  /* margin:1rem; */
   border-radius: 10px;
   padding: 0 1rem;
   text-align: center;
@@ -94,7 +93,6 @@ h2.bp-card-title{
   width: 95%;
   text-align: center;
   overflow-y: scroll;
-  /* padding: 2rem; */
 }
 
 .viewer-container{
@@ -115,7 +113,6 @@ h2.bp-card-title{
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  /* padding: 2rem 2rem; */
 }
 
 .bp-browser-container{
@@ -131,3 +128,4 @@ h2.bp-card-title{
 p{
   color: black;
 }
+*/

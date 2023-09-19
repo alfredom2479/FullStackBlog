@@ -23,8 +23,8 @@ export default function BlogPosts(){
     <>
     <HomeGlobalStyles/>
       <ListContainer>
-      {blogPostsData.map((data,i)=>{
-        return <BlogPostCard key={i} blogPostData={data}/>
+      {blogPostsData.map((data)=>{
+        return <BlogPostCard key={data.title} blogPostData={data}/>
       })}
       </ListContainer>
     </>

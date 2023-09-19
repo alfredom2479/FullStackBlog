@@ -13,11 +13,13 @@ import BlogPost from './pages/BlogPost.jsx';
 import BlogPostLayout from './components/BlogPostLayout.jsx';
 
 import {loader as BlogPostsLoader} from "./pages/BlogPosts.jsx";
+import { HomeGlobalStyles } from './components/styles/Global.js';
+// import {loader as BlogPostLayoutLoader} from "./components/BlogPostLayout.jsx"
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
+    element: <Home />,
   },
   {
     path: "/blogposts",
@@ -28,6 +30,7 @@ const router = createBrowserRouter([
   {
     path: "view",
     element: <BlogPostLayout />,
+    loader: BlogPostsLoader,
     children:[
       {
         path: ":id",
@@ -39,6 +42,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+      <HomeGlobalStyles/>
       <RouterProvider router={router} />
   </React.StrictMode>,
 )
