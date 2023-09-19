@@ -9,7 +9,6 @@ import { useLoaderData } from 'react-router-dom';
 
 export async function loader(){
   const postData =  await getBlogPosts();
-  console.log(postData);
 
   return postData;
 }
@@ -24,7 +23,7 @@ export default function BlogPosts(){
     <HomeGlobalStyles/>
       <ListContainer>
       {blogPostsData.map((data)=>{
-        return <BlogPostCard key={data.title} blogPostData={data}/>
+        return <BlogPostCard key={data._id} blogPostData={data}/>
       })}
       </ListContainer>
     </>

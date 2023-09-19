@@ -18,7 +18,7 @@ export default function BlogPostLayout(){
       <ViewerContainer>
         <SideBarContainer>
           {blogPostsData.map((data)=>{
-             return <BlogPostCard key={data.title} blogPostData={data}/> 
+             return <BlogPostCard key={data._id} blogPostData={data}/> 
            })} 
         </SideBarContainer>
         <Outlet />

@@ -1,5 +1,11 @@
+import { getBlogPost } from "../../blogapi.js"
 import ContentContainer from "../components/styles/ContentContainer.styled.js"
 import ContentTextContainer from "../components/styles/ContentTextContainer.styled.js"
+
+export async function loader(){
+  const postData = await getBlogPost();
+  return postData;
+}
 
 export default function BlogPost(){
 

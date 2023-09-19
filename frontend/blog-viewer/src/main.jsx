@@ -13,6 +13,7 @@ import BlogPost from './pages/BlogPost.jsx';
 import BlogPostLayout from './components/BlogPostLayout.jsx';
 
 import {loader as BlogPostsLoader} from "./pages/BlogPosts.jsx";
+import {loader as BlogPostLoader} from "./pages/BlogPost.jsx";
 import { HomeGlobalStyles } from './components/styles/Global.js';
 // import {loader as BlogPostLayoutLoader} from "./components/BlogPostLayout.jsx"
 
@@ -34,7 +35,8 @@ const router = createBrowserRouter([
     children:[
       {
         path: ":id",
-        element: <BlogPost />
+        element: <BlogPost />,
+        loader: BlogPostLoader
       }
     ]
   }

@@ -64,7 +64,7 @@ const createBlogPost = [
 // @access      Public
 const getBlogPosts = asyncHandler(async (req,res)=>{
   const requestedBlogPosts = await BlogPost.find({})
-    .select(["-_id", "-author","-__v"]);
+    .select([ "-author","-__v"]);
 
   if(requestedBlogPosts){
     const publicBlogPosts = requestedBlogPosts.filter((blogPost)=> !blogPost.isprivate);

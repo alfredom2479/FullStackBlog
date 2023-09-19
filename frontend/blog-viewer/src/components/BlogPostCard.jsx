@@ -4,7 +4,7 @@ import { BlogPostCardLink } from "./styles/BlogPostCardLink.styled"
 export default function BlogPostCard({blogPostData}){
 
   return(
-    <BlogPostCardLink to="/view/1">
+    <BlogPostCardLink to={`/view/${blogPostData._id}`}>
        {blogPostData.title} 
     </BlogPostCardLink>
   )
