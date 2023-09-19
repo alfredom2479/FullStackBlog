@@ -5,24 +5,27 @@ import { ListContainer } from '../components/styles/ListContainer.styled'
 import BlogPostCard from '../components/BlogPostCard'
 
 import { getBlogPosts } from '../../blogapi'
+import { useLoaderData } from 'react-router-dom';
 
-export function loader(){
-  return getBlogPosts();
+export async function loader(){
+  const postData =  await getBlogPosts();
+  console.log(postData);
+
+  return postData;
 }
 
 export default function BlogPosts(){
+
+  const blogPostsData = useLoaderData();
+  //console.log(blogPostsData.length);
 
   return(
     <>
     <HomeGlobalStyles/>
       <ListContainer>
-        <BlogPostCard/>
-        <BlogPostCard/>
-        <BlogPostCard/>
-        <BlogPostCard/>
-        <BlogPostCard/>
-        <BlogPostCard/>
-        <BlogPostCard/>
+      {blogPostsData.map((data,i)=>{
+        return <BlogPostCard key={i} blogPostData={data}/>
+      })}
       </ListContainer>
     </>
   )

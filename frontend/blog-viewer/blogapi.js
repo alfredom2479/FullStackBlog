@@ -11,6 +11,5 @@ export async function getBlogPosts(){
     }
   }
   const data = await res.json();
-  console.log(data);
   return data.blogposts;
 }

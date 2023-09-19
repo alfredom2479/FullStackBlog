@@ -1,11 +1,17 @@
-//import "../App.css"
+import PropTypes from 'prop-types';
 import { BlogPostCardLink } from "./styles/BlogPostCardLink.styled"
 
-export default function BlogPostCard(){
+export default function BlogPostCard({blogPostData}){
 
+  console.log("in card");
+  console.log(blogPostData);
   return(
     <BlogPostCardLink to="/view/1">
-      Blog Post Card Title that is pretty long lets make it longer
+       {blogPostData.title} 
     </BlogPostCardLink>
   )
+}
+
+BlogPostCard.propTypes = {
+  blogPostData: PropTypes.object,
 }
