@@ -1,27 +1,25 @@
-import { getBlogPost } from "../../blogapi.js"
+import { useLoaderData } from "react-router-dom";
+import { getBlogPost } from "../blogapi.js"
 import ContentContainer from "../components/styles/ContentContainer.styled.js"
 import ContentTextContainer from "../components/styles/ContentTextContainer.styled.js"
 
-export async function loader(){
-  const postData = await getBlogPost();
+export async function loader({params}){
+  console.log(params)
+  const postData = await getBlogPost(params.id);
   return postData;
 }
 
 export default function BlogPost(){
 
+  const blogPostData = useLoaderData();
+
   return(
     <>
     <ContentContainer>
       <ContentTextContainer>
-        <h1>Blog Post Title</h1>
+        <h1>{blogPostData.title}</h1>
         <p>
-          This is the bloc post content. Hopefully it will 
-          format well. If it doesnt then oh well I will fix it 
-          later but if it does than that would be cool I guess. 
-          I am just setting up the basic pages for the future.
-          <br/>
-          <br/>
-          Test
+          {blogPostData.content}
         </p>
       </ContentTextContainer>
     </ContentContainer>

@@ -4,7 +4,7 @@ import { ListContainer } from '../components/styles/ListContainer.styled'
 
 import BlogPostCard from '../components/BlogPostCard'
 
-import { getBlogPosts } from '../../blogapi'
+import { getBlogPosts } from '../blogapi'
 import { useLoaderData } from 'react-router-dom';
 
 export async function loader(){
