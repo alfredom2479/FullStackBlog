@@ -7,11 +7,13 @@ import {
   createUser, 
   loginUser,
   logoutUser,
-  getMe
+  getMe,
+  loginAdmin
 } from '../controllers/userController.js';
 
 router.post("/", createUser);
 router.post("/login",loginUser);
+router.post("/admin",loginAdmin);
 router.post("/logout",logoutUser);
 router.get("/me",protect,getMe)
 
