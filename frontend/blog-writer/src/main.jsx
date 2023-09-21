@@ -8,6 +8,8 @@ import {
 import ManagerLayout from './components/ManagerLayout';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+
+import {action as loginAction} from "./pages/LoginPage";
 //import App from './App.jsx'
 
 const router = createBrowserRouter([
@@ -27,7 +29,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage/>
+    element: <LoginPage/>,
+    action: loginAction
   }
 ])
 
