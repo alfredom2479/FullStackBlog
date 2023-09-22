@@ -7,6 +7,8 @@ export async function action({request}){
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
+  console.log('ac email: '+email);
+  console.log('ac pass: '+password);
   try{
     const data = await loginUser({email,password});
     console.log(data);
@@ -28,9 +30,7 @@ export default function LoginPage(){
         <input name="password" type="password" placeholder="password" required/>
         <button>Login</button>
       </Form>
-      <div>
-        Errer?: {errorMessage && errorMessage.message}
-      </div>
+      {errorMessage && <h3>{errorMessage}</h3>}
     </div>
   )
 }

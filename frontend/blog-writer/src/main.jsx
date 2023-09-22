@@ -10,12 +10,15 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
 import {action as loginAction} from "./pages/LoginPage";
+import {loader as getMeAction} from "./components/ManagerLayout";
 //import App from './App.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <ManagerLayout/>,
+    loader: getMeAction,
+    //errorElement: <h1>u done f'd up A Aron</h1>,
     children:[
       {
         path: ":id",
