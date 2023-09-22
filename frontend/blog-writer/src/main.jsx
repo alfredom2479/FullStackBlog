@@ -11,6 +11,7 @@ import RegisterPage from './pages/RegisterPage';
 
 import {action as loginAction} from "./pages/LoginPage";
 import {loader as getMeAction} from "./components/ManagerLayout";
+import EditBlogPage from './pages/EditBlogPage';
 //import App from './App.jsx'
 
 const router = createBrowserRouter([
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     children:[
       {
         path: ":id",
-        element: <h1>This will be the edit blog page</h1>
+        element: <EditBlogPage/>
       }
     ]
   },
