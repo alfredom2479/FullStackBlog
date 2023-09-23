@@ -7,6 +7,7 @@ import {
   createBlogPost,
   getBlogPosts,
   getBlogPost,
+  getAllBlogPosts,
   updaeteBlogPost,
   deleteBlogPost
 } from "../controllers/blogPostController.js"
@@ -14,6 +15,8 @@ import {
 router.route("/")
   .get(getBlogPosts)
   .post(protect,adminProtect,createBlogPost);
+router.route("/all")
+  .get(protect,adminProtect,getAllBlogPosts)
 router.route("/:id")
   .get(getBlogPost)
   .put(protect,adminProtect,updaeteBlogPost)

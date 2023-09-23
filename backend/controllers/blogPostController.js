@@ -78,6 +78,24 @@ const getBlogPosts = asyncHandler(async (req,res)=>{
   }
 })
 
+// @desc        Get blog post information + content
+// @route       GET /api/posts/
+// @access      Private
+const getAllBlogPosts = asyncHandler(async (req,res)=>{
+  const requestedBlogPosts = await BlogPost.find({})
+    .select([ "-author","-__v"]);
+
+  if(requestedBlogPosts){
+    res.status(200).json({
+      blogposts: requestedBlogPosts
+    });
+  }
+  else{
+    res.status(404);
+    throw new Error("Blog posts not found");
+  }
+})
+
 
 // @desc        Get blog post information + content
 // @route       GET /api/posts/:id
@@ -188,4 +206,11 @@ const deleteBlogPost = asyncHandler(async (req,res) => {
   }
 })
 
-export {getBlogPosts, getBlogPost, createBlogPost,updaeteBlogPost,deleteBlogPost};
+export {
+  getBlogPosts, 
+  getAllBlogPosts, 
+  getBlogPost, 
+  createBlogPost,
+  updaeteBlogPost,
+  deleteBlogPost
+};

@@ -37,7 +37,7 @@ export async function getMe(){
 }
 
 export async function getBlogPosts(){
-  const url = "/api/blog";
+  const url = "/api/blog/all";
   const res = await fetch(url);
   if(!res.ok){
     throw {
