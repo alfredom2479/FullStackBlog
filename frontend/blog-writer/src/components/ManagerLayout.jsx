@@ -1,33 +1,36 @@
 import {Outlet, useLoaderData} from "react-router-dom";
 
 import ManPageContainer from "./styles/ManPageContainer.styled";
-import { getMe } from "../blogapi";
+import { getBlogPosts, getMe } from "../blogapi";
 import BlogCard from "./BlogCard";
 import PostBrowserContainer from "./styles/PostsBrowserContainer.styled";
 
 export async function loader(){
-    const myInfo = await getMe();
+    let [myInfo, blogPosts] = await Promise.all([getMe(),getBlogPosts()]);
     if(!myInfo){
-      return {username: "ur not logged in mate"};
+      //return {username: "ur not logged in mate"};
+      myInfo = {username: "ERROR"}
     }
-    return myInfo;
+    if(!blogPosts){
+      blogPosts = [];
+    }
+    
+    return {myInfo,blogPosts};
 }
 
 export default function ManagerLayout(){
 
-  const myInfo = useLoaderData();
-  console.log(myInfo);
+  const loadedData = useLoaderData();
+  const myInfo = loadedData.myInfo;
+  const blogPosts = loadedData.blogPosts ? loadedData.blogPosts.blogposts : [];
+  console.log(loadedData);
+  console.log(loadedData.blogPosts)
 
   return(
     <ManPageContainer>
       <h1>This is going to be the nav of all posts</h1>
       <PostBrowserContainer>
-        <BlogCard/>
-        <BlogCard/>
-        <BlogCard/>
-        <BlogCard/>
-        <BlogCard/>
-        <BlogCard/>
+        {blogPosts.map((post) => <BlogCard key={post._id} blogInfo={post}/>)}
         <BlogCard/>
         <BlogCard/>
       </PostBrowserContainer>
