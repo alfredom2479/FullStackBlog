@@ -28,12 +28,11 @@ export default function ManagerLayout(){
 
   return(
     <ManPageContainer>
-      <h1>This is going to be the nav of all posts</h1>
+      {myInfo && <h2>Welcome, {myInfo.username}!</h2>}
       <PostBrowserContainer>
         {blogPosts.map((post) => <BlogCard key={post._id} blogInfo={post}/>)}
       </PostBrowserContainer>
       <Outlet/>
-      {myInfo && <h2>Welcome, {myInfo.username}!</h2>}
     </ManPageContainer>
   )
 }
