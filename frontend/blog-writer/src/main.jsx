@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
 import {action as loginAction} from "./pages/LoginPage";
+import {loader as editBlogLoader} from "./pages/EditBlogPage";
 import {loader as getMeAction} from "./components/ManagerLayout";
 import EditBlogPage from './pages/EditBlogPage';
 //import App from './App.jsx'
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
     children:[
       {
         path: ":id",
-        element: <EditBlogPage/>
+        element: <EditBlogPage/>,
+        loader: editBlogLoader
       }
     ]
   },

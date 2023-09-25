@@ -24,6 +24,8 @@ export async function loginUser(creds){
 
 export async function getMe(){
   const res = await fetch("/api/users/me");
+  console.log("getme api call");
+  console.log(res)
   const data = await res.json();
 
   if(!res.ok){
@@ -48,5 +50,19 @@ export async function getBlogPosts(){
   }
   const data = await res.json();
   console.log(data)
+  return data;
+}
+
+export async function getBlogPost(id){
+  const url = `/api/blog/${id}`;
+  const res = await fetch(url);
+  if(!res.ok){
+    throw {
+      message: "Failed to fetch blog post",
+      statusText: res.statusText,
+      status: res.status
+    }
+  }
+  const data = await res.json();
   return data;
 }

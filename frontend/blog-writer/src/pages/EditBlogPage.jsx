@@ -1,7 +1,30 @@
 import {useRef} from "react";
+import {
+  useLoaderData,
+  Form,
+  redirect
+} from "react-router-dom";
 import {Editor} from "@tinymce/tinymce-react";
+import { getBlogPost } from "../blogapi";
+
+export async function loader({params}){
+  //console.log(params);
+  const blogPostData = await getBlogPost(params.id);
+  return blogPostData;
+}
+
+export async function action({request}){
+
+  const formData = await request.formData();
+  console.log(formData);
+
+  return redirect("/");
+}
 
 export default function EditBlogPage(){
+
+  const blogPostData = useLoaderData();
+  //console.log(blogPostData)
 
   const editorRef = useRef(null);
   const log = () =>{
@@ -12,10 +35,15 @@ export default function EditBlogPage(){
 
   return(
     <div>
+      <h1>{blogPostData ? blogPostData.title : ""}</h1>
+      <Form to="/">
+      <label htmlFor="isprivate" /> Hidden
+      <input type="checkbox" name="isprivate"/>
      <Editor
+        name="blogcontent"
         apiKey='ufr773nh2hdstcfr49r1ufr74twm7maos51jfbr8jnf1l105'
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue="<p>This is the initial content of the editor.</p>"
+        initialValue={blogPostData.content}
         init={{
           height: 500,
           menubar: false,
@@ -32,6 +60,8 @@ export default function EditBlogPage(){
         }}
       />
       <button onClick={log}>Log editor content</button>
+      <button type="submit">Save changes</button>
+      </Form>
     </div>
   )
 }
