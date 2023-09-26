@@ -68,7 +68,9 @@ export async function getBlogPost(id){
 }
 
 export async function updateBlogPost(id, bodyParams){
-  const res = await fetch(`/api/blog/${id}`, 
+  let res = null;
+  try{
+  res = await fetch(`/api/blog/${id}`, 
     {
       method: "PUT",
       body: JSON.stringify(bodyParams),
@@ -77,6 +79,9 @@ export async function updateBlogPost(id, bodyParams){
       }
     }
   );
+  }catch(err){
+    console.log(err);
+  }
 
   const data = await res.json();
   console.log(data);

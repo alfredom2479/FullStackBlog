@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import {useRef, useState, useEffect} from "react";
 import {
   useLoaderData,
   Form,
@@ -56,7 +56,11 @@ export default function EditBlogPage(){
 
   const blogPostData = useLoaderData();
   const blogHtml = blogPostData ? decode(blogPostData.content, {level: "html5"}) : "";
-  //console.log(blogPostData)
+  console.log(blogPostData)
+  
+  useEffect(()=>{
+    setBlogContent(blogHtml)
+  },[blogHtml])
 
   const editorRef = useRef(null);
   /*
