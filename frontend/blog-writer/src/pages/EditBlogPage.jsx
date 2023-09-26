@@ -76,11 +76,11 @@ export default function EditBlogPage(){
   */
 
   return(
-    <div>
+    <div key={blogPostData._id}>
       <h1>{blogPostData ? blogPostData.title : ""}</h1>
       <Form method="POST">
       <label htmlFor="isprivate" /> Hidden
-      <input type="checkbox" name="isprivate"/>
+      <input type="checkbox" name="isprivate"  defaultChecked={blogPostData.isprivate}/>
      <Editor
         name="blogcontent"
         apiKey='ufr773nh2hdstcfr49r1ufr74twm7maos51jfbr8jnf1l105'
