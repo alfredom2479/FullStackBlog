@@ -18,9 +18,12 @@ export async function loader({params}){
 
 export async function action({request,params}){
   const formData = Object.fromEntries(await request.formData());
-  console.log(formData);
+  //console.log(formData);
   console.log(params)
-  if(formData.isprivate && formData.isprivate === "on"){
+  if(!formData.isprivate ){
+    formData.isprivate = false;
+  }
+  else{
     formData.isprivate = true;
   }
   try{

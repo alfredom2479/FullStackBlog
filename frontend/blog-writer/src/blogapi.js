@@ -69,6 +69,8 @@ export async function getBlogPost(id){
 
 export async function updateBlogPost(id, bodyParams){
   let res = null;
+  console.log("params:")
+  console.log(bodyParams);
   try{
   res = await fetch(`/api/blog/${id}`, 
     {

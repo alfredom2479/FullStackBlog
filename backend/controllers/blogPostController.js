@@ -143,7 +143,7 @@ const updaeteBlogPost = [
   
   asyncHandler(async(req,res) => {
    
-  //console.log(req.body);
+  console.log(req.body);
   const validationErrors = validationResult(req);
   //console.log(validationErrors.isEmpty());
 
@@ -164,10 +164,13 @@ const updaeteBlogPost = [
       targetBlogPost.title = req.body.title || targetBlogPost.title;
       targetBlogPost.author = req.body.author || targetBlogPost.author;
       targetBlogPost.content = req.body.content || targetBlogPost.content;
-      targetBlogPost.isprivate = req.body.isprivate || targetBlogPost.isprivate;
+      if(req.body.isprivate !== undefined){
+        targetBlogPost.isprivate = req.body.isprivate;
+      }
+      //targetBlogPost.isprivate = req.body.isprivate || targetBlogPost.isprivate;
 
     
-
+      //console.log(targetBlogPost);
       const updatedBlogPost = await targetBlogPost.save();
       //console.loge(updatedBlogPost)
       res.json({
