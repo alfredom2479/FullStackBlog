@@ -7,6 +7,9 @@ import {
 import {Editor} from "@tinymce/tinymce-react";
 import { getBlogPost, updateBlogPost } from "../blogapi";
 
+//import parse from "html-react-parser";
+import {decode} from "html-entities";
+
 export async function loader({params}){
   //console.log(params);
   const blogPostData = await getBlogPost(params.id);
@@ -52,15 +55,18 @@ export default function EditBlogPage(){
   const [blogContent, setBlogContent] = useState("");
 
   const blogPostData = useLoaderData();
+  const blogHtml = blogPostData ? decode(blogPostData.content, {level: "html5"}) : "";
   //console.log(blogPostData)
 
   const editorRef = useRef(null);
+  /*
   const log = () =>{
     if (editorRef.current){
       console.log(editorRef.current.getContent());
       setBlogContent(editorRef.current.getContent());
     }
   }
+  */
 
   return(
     <div>
@@ -72,7 +78,9 @@ export default function EditBlogPage(){
         name="blogcontent"
         apiKey='ufr773nh2hdstcfr49r1ufr74twm7maos51jfbr8jnf1l105'
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue={blogPostData.content}
+        onEditorChange={(newVal)=> setBlogContent(newVal)}
+        initialValue={blogHtml}
+        value={blogContent}
         init={{
           height: 500,
           menubar: false,
@@ -93,7 +101,7 @@ export default function EditBlogPage(){
         type="hidden" 
         value={blogContent}>
       </input>
-      <button onClick={log}>Save Changes</button>
+      <button >Save Changes</button>
       
       </Form>
     </div>
