@@ -124,7 +124,7 @@ const getBlogPost = asyncHandler(async (req,res) => {
 // @access    Private
 const updaeteBlogPost = [
    body("author").optional()
-      .trim().notEmpty().withMessage("Author is required")
+      .trim().notEmpty().withMessage("Author cannot be empty")
       .custom((value)=>{
         if(!isValidObjectId(value)){
           throw new Error("Not valid author Id")
@@ -132,11 +132,11 @@ const updaeteBlogPost = [
         return true;
       }),
     body("title").optional()
-      .trim().notEmpty().withMessage("Title is required")
+      .trim().notEmpty().withMessage("Title cannot be empty")
       .isLength({min:2,max:100}).withMessage("Title is too short or too long")
       .escape(),
     body("content").optional()
-      .trim().notEmpty().withMessage("Content is required")
+      .trim().notEmpty().withMessage("Content cannot be empty")
       .isLength({min:20,max:3000}).withMessage("Content is too short or too long")
       .escape(),
     body("isprivate").optional().isBoolean().withMessage("isprivate must be a true or false"),
