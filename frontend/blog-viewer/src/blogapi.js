@@ -1,4 +1,5 @@
 
+
 export async function getBlogPosts(){
   const url = "/api/blog";
   const res = await fetch(url);

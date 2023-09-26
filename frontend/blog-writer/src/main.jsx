@@ -10,8 +10,11 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
 import {action as loginAction} from "./pages/LoginPage";
-import {loader as editBlogLoader} from "./pages/EditBlogPage";
-import {loader as getMeAction} from "./components/ManagerLayout";
+import {
+  loader as editBlogLoader,
+  action as submitChangesAction
+} from "./pages/EditBlogPage";
+import {loader as getMeLoader} from "./components/ManagerLayout";
 import EditBlogPage from './pages/EditBlogPage';
 //import App from './App.jsx'
 
@@ -19,13 +22,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <ManagerLayout/>,
-    loader: getMeAction,
+    loader: getMeLoader,
     //errorElement: <h1>u done f'd up A Aron</h1>,
     children:[
       {
         path: ":id",
         element: <EditBlogPage/>,
-        loader: editBlogLoader
+        loader: editBlogLoader,
+        action: submitChangesAction,
       }
     ]
   },

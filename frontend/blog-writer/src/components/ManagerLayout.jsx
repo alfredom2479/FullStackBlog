@@ -23,8 +23,8 @@ export default function ManagerLayout(){
   const loadedData = useLoaderData();
   const myInfo = loadedData.myInfo;
   const blogPosts = loadedData.blogPosts ? loadedData.blogPosts.blogposts : [];
-  console.log(loadedData);
-  console.log(loadedData.blogPosts)
+  //console.log(loadedData);
+  //console.log(loadedData.blogPosts)
 
   return(
     <ManPageContainer>

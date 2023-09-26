@@ -3,7 +3,7 @@ import { loginUser } from "../blogapi";
 
 
 export async function action({request}){
-  console.log("in action");
+  console.log("in login action");
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");

@@ -1,11 +1,11 @@
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import {
   useLoaderData,
   Form,
   redirect
 } from "react-router-dom";
 import {Editor} from "@tinymce/tinymce-react";
-import { getBlogPost } from "../blogapi";
+import { getBlogPost, updateBlogPost } from "../blogapi";
 
 export async function loader({params}){
   //console.log(params);
@@ -13,15 +13,43 @@ export async function loader({params}){
   return blogPostData;
 }
 
-export async function action({request}){
-
-  const formData = await request.formData();
+export async function action({request,params}){
+  const formData = Object.fromEntries(await request.formData());
   console.log(formData);
+  console.log(params)
+  if(formData.isprivate && formData.isprivate === "on"){
+    formData.isprivate = true;
+  }
+  try{
+    const data = await updateBlogPost(params.id,formData);
+    console.log("result:");
+    console.log(data);
+  }catch(err){
+    console.log("an error has occured :(");
+    return err.message;
+  }
 
-  return redirect("/");
+  return redirect("/")
 }
 
+/*export async function action({request}){
+  console.log("in login action");
+  const formData = await request.formData();
+  const email = formData.get("email");
+  const password = formData.get("password");
+  console.log('ac email: '+email);
+  console.log('ac pass: '+password);
+  try{
+    const data = await loginUser({email,password});
+    console.log(data);
+    return redirect("/");
+  }catch(err){
+    return err.message
+  }
+}*/
+
 export default function EditBlogPage(){
+  const [blogContent, setBlogContent] = useState("");
 
   const blogPostData = useLoaderData();
   //console.log(blogPostData)
@@ -30,13 +58,14 @@ export default function EditBlogPage(){
   const log = () =>{
     if (editorRef.current){
       console.log(editorRef.current.getContent());
+      setBlogContent(editorRef.current.getContent());
     }
   }
 
   return(
     <div>
       <h1>{blogPostData ? blogPostData.title : ""}</h1>
-      <Form to="/">
+      <Form method="POST">
       <label htmlFor="isprivate" /> Hidden
       <input type="checkbox" name="isprivate"/>
      <Editor
@@ -59,8 +88,13 @@ export default function EditBlogPage(){
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />
-      <button onClick={log}>Log editor content</button>
-      <button type="submit">Save changes</button>
+      <input 
+        name="content" 
+        type="hidden" 
+        value={blogContent}>
+      </input>
+      <button onClick={log}>Save Changes</button>
+      
       </Form>
     </div>
   )
