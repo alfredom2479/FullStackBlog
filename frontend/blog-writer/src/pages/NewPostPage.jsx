@@ -8,8 +8,6 @@ import { createBlogPost } from "../blogapi";
 export async function action({request}){
   const formData = Object.fromEntries(await request.formData());
 
-  console.log(formData);
-
   if(!formData.isprivate){
     formData.isprivate = false;
   }
@@ -19,7 +17,6 @@ export async function action({request}){
 
   try{
     const data = await createBlogPost(formData);
-    console.log("data");
     console.log(data);
   }catch(err){
     console.log("an oopsie woopsie doopsie has occured");
