@@ -69,8 +69,7 @@ export async function getBlogPost(id){
 
 export async function updateBlogPost(id, bodyParams){
   let res = null;
-  console.log("params:")
-  console.log(bodyParams);
+
   try{
   res = await fetch(`/api/blog/${id}`, 
     {
@@ -95,7 +94,38 @@ export async function updateBlogPost(id, bodyParams){
       status: res.status
     }
   }
-  return data
+  return data;
+}
+
+export async function createBlogPost(bodyParams){
+  let res = null;
+
+  try{
+    res = await fetch(`/api/blog/`,
+      {
+        method: "POST",
+        body: JSON.stringify(bodyParams),
+        headers: {
+          "Content-Type" : "application/json"
+        }
+      }
+    )
+  }catch(err){
+    console.log(err);
+  }
+
+  const data = await res.json();
+
+  if(!res.ok){
+    throw {
+      message: data.message,
+      statusText: data.statusText,
+      status: data.status
+    }
+  }
+
+  return data;
+
 }
 
 

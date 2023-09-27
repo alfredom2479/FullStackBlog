@@ -10,12 +10,14 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
 import {action as loginAction} from "./pages/LoginPage";
+import {action as createPostAction} from "./pages/NewPostPage"
 import {
   loader as editBlogLoader,
   action as submitChangesAction
 } from "./pages/EditBlogPage";
 import {loader as getMeLoader} from "./components/ManagerLayout";
 import EditBlogPage from './pages/EditBlogPage';
+import NewPostPage from './pages/NewPostPage';
 //import App from './App.jsx'
 
 const router = createBrowserRouter([
@@ -41,6 +43,11 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginPage/>,
     action: loginAction
+  },
+  {
+    path: "/create",
+    element: <NewPostPage/>,
+    action: createPostAction
   }
 ])
 

@@ -38,21 +38,6 @@ export async function action({request,params}){
   return redirect("/")
 }
 
-/*export async function action({request}){
-  console.log("in login action");
-  const formData = await request.formData();
-  const email = formData.get("email");
-  const password = formData.get("password");
-  console.log('ac email: '+email);
-  console.log('ac pass: '+password);
-  try{
-    const data = await loginUser({email,password});
-    console.log(data);
-    return redirect("/");
-  }catch(err){
-    return err.message
-  }
-}*/
 
 export default function EditBlogPage(){
   const [blogContent, setBlogContent] = useState("");
